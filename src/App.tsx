@@ -12,6 +12,7 @@ import {
   Login,
   Checkout,
   Orders,
+  About,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -21,9 +22,10 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { index: true, element: <Landing /> },
+      { path: 'about', element: <About /> },
       { path: 'products', element: <Products /> },
       { path: 'products/:id', element: <SingleProduct /> },
-      { path: 'checkOut', element: <Checkout /> },
+      { path: 'checkout', element: <Checkout /> },
       { path: 'cart', element: <Cart /> },
       { path: 'orders', element: <Orders /> },
     ],
