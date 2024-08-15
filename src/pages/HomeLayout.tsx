@@ -1,13 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 
-import { Header, Navbar } from '@/components';
+import { Header, Loading, Navbar } from '@/components';
+
 function HomeLayout() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
   return (
     <>
       <Header />
       <Navbar />
       <div className='algin-element  py-20'>
-        <Outlet />
+        {isLoading ? <Loading /> : <Outlet />}
       </div>
     </>
   );
