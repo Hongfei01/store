@@ -1,27 +1,29 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from './ui/card';
 import { formatAsDollars, ProductsResponse } from '@/utils';
-function ProductsGrid() {
+
+function ProductsList() {
   const { data: products } = useLoaderData() as ProductsResponse;
+
   return (
-    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 pt-12'>
+    <div className='mt-12 grid gap-y-8 '>
       {products.map((product) => {
-        const { title, price, image } = product.attributes;
+        const { image, title, price, company } = product.attributes;
+        const formatDollarPrice = formatAsDollars(price);
         return (
           <Link to={`/products/${product.id}`} key={product.id}>
             <Card>
-              <CardContent className='p-4'>
+              <CardContent className='p-8 grid gap-y-4  md:grid-cols-3'>
                 <img
                   src={image}
                   alt={title}
-                  className=' rounded-md object-cover w-full h-64 md:h-48'
+                  className='h-64 w-full md:h-48  md:w-48 rounded-md object-cover'
                 />
-                <div className='mt-4 text-center'>
+                <div>
                   <h2 className='text-xl font-semibold capitalize'>{title}</h2>
-                  <p className='text-primary font-light mt-2'>
-                    {formatAsDollars(price)}
-                  </p>
+                  <h4>{company}</h4>
                 </div>
+                <p className='text-primary md:ml-auto '>{formatDollarPrice}</p>
               </CardContent>
             </Card>
           </Link>
@@ -30,4 +32,4 @@ function ProductsGrid() {
     </div>
   );
 }
-export default ProductsGrid;
+export default ProductsList;
