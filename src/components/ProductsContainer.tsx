@@ -14,9 +14,9 @@ function ProductsContainer() {
   return (
     <>
       <section>
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between mt-8'>
           <h4 className='font-medium text-xl'>
-            {totalProducts} product{`${totalProducts > 1 && 's'} `}
+            {totalProducts} product{`${totalProducts > 1 ? 's' : ''} `}
           </h4>
           <div className='flex gap-x-4'>
             <Button
@@ -39,7 +39,9 @@ function ProductsContainer() {
       </section>
       <div>
         {totalProducts === 0 ? (
-          <h4>no product matched your search...</h4>
+          <h5 className='text-2xl mt-16'>
+            Sorry, no products matched your search...
+          </h5>
         ) : layout === 'grid' ? (
           <ProductsGrid />
         ) : (

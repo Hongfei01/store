@@ -1,8 +1,11 @@
 import { Filters, PaginationContainer, ProductsContainer } from '@/components';
-import { customFetch, ProductsResponse } from '@/utils';
+import {
+  customFetch,
+  type ProductsResponse,
+  type ProductsResponseWithParams,
+} from '@/utils';
 import { LoaderFunction, useLoaderData } from 'react-router-dom';
 
-const url = '/products';
 function Products() {
   const result = useLoaderData() as ProductsResponse;
   console.log(result);
@@ -15,9 +18,17 @@ function Products() {
   );
 }
 
-export const loader: LoaderFunction = async (): Promise<ProductsResponse> => {
-  const response = await customFetch.get(url);
-  return { ...response.data };
+// loader function
+const url = '/products';
+
+export const loader: LoaderFunction = async ({
+  request,
+}): Promise<ProductsResponseWithParams> => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+  const response = await customFetch.get<ProductsResponse>(url, { params });
+  return { ...response.data, params };
 };
 
 export default Products;
