@@ -13,6 +13,7 @@ import {
 } from '@/utils';
 
 import { useLoaderData, useLocation } from 'react-router-dom';
+
 function PaginationContainer() {
   const { meta } = useLoaderData() as ProductsResponseWithParams;
   const { page, pageCount } = meta.pagination;
