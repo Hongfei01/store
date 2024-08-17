@@ -16,7 +16,7 @@ function FormRange({ name, label, defaultValue }: FormRangeProps) {
   const [selectPrice, setSelectPrice] = useState(defaultPrice);
   return (
     <div className='mb-2'>
-      <Label htmlFor={name} className='flex justify-between capitalize'>
+      <Label htmlFor={name} className='flex justify-between capitalize mb-2'>
         {label || name} <span>{formatAsDollars(selectPrice)}</span>
       </Label>
       <Slider
