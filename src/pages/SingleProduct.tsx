@@ -10,15 +10,35 @@ import { Separator } from '@/components/ui/separator';
 import { SelectProductAmount, SelectProductColor } from '@/components';
 import { Mode } from '@/components/SelectProductAmount';
 
+import { CartItem } from '@/utils';
+import { useAppDispatch } from '@/hooks';
+
+import { addItem } from '@/features/cart/cartSlice';
+
 function SingleProduct() {
   const { data: product } = useLoaderData() as SingleProductResponse;
   const { image, price, title, description, colors, company } =
     product.attributes;
+  const productID = product.id;
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
   const formDolor = formatAsDollars(price);
 
-  const addToCart = () => {};
+  const dispatch = useAppDispatch();
+
+  const addToCart = () => {
+    const newItem: CartItem = {
+      cartID: productID + productColor,
+      productID,
+      image,
+      title,
+      price,
+      amount,
+      productColor,
+      company,
+    };
+    dispatch(addItem(newItem));
+  };
   return (
     <section>
       {/* Links */}
