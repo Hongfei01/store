@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { useAppSelector } from './hooks';
 
 import {
   HomeLayout,
@@ -22,6 +21,8 @@ import { loader as landingLoader } from './pages/Landing';
 import { loader as productsLoader } from './pages/Products';
 
 import { loader as singleProductLoader } from './pages/SingleProduct';
+
+import { action as registerAction } from './pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -58,12 +59,15 @@ const router = createBrowserRouter([
     ],
   },
   { path: '/login', element: <Login />, errorElement: <Error /> },
-  { path: '/register', element: <Register />, errorElement: <Error /> },
+  {
+    path: '/register',
+    element: <Register />,
+    errorElement: <Error />,
+    action: registerAction,
+  },
 ]);
 
 function App() {
-  const { name } = useAppSelector((state) => state.userState);
-  console.log(name);
   return <RouterProvider router={router}></RouterProvider>;
 }
 export default App;
