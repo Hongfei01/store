@@ -4,11 +4,9 @@ import {
   type ProductsResponse,
   type ProductsResponseWithParams,
 } from '@/utils';
-import { LoaderFunction, useLoaderData } from 'react-router-dom';
+import { LoaderFunction } from 'react-router-dom';
 
 function Products() {
-  const result = useLoaderData() as ProductsResponse;
-  console.log(result);
   return (
     <>
       <Filters />

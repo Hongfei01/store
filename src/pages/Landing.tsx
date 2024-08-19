@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunction } from 'react-router-dom';
+import { type LoaderFunction } from 'react-router-dom';
 
 import { FeaturedProducts, Hero } from '@/components';
 import { customFetch, type ProductsResponse } from '@/utils';
@@ -6,8 +6,6 @@ import { customFetch, type ProductsResponse } from '@/utils';
 const url = '/products?featured=true';
 
 function Landing() {
-  const result = useLoaderData() as ProductsResponse;
-  console.log(result);
   return (
     <>
       <Hero />

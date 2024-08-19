@@ -45,12 +45,11 @@ export const action =
       numItemsInCart,
     };
     try {
-      const result = await customFetch.post(
+      await customFetch.post(
         '/orders',
         { data: info },
         { headers: { Authorization: `Bearer ${user.jwt}` } }
       );
-      console.log(result);
       store.dispatch(clearCart());
       toast({ description: 'order placed' });
       return redirect('/orders');
