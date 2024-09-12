@@ -11,7 +11,7 @@ export enum Mode {
   CartItem = 'CardItem',
 }
 
-type SelectProductAmuntProps = {
+type SelectProductAmountProps = {
   mode: Mode.SingleProduct;
   amount: number;
   setAmount: React.Dispatch<React.SetStateAction<number>>;
@@ -27,12 +27,12 @@ function SelectProductAmount({
   mode,
   amount,
   setAmount,
-}: SelectProductAmuntProps | SelectCartItemProps) {
+}: SelectProductAmountProps | SelectCartItemProps) {
   const cartItem = mode === Mode.CartItem;
 
   return (
     <>
-      <h4 className='mb-2 capitalize tracking-wider font-medium'>amount:</h4>
+      <h4 className='mb-2 capitalize tracking-wider font-medium '>amount:</h4>
       <Select
         defaultValue={amount.toString()}
         onValueChange={(value) => setAmount(Number(value))}
